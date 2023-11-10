@@ -4,6 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
@@ -74,7 +75,7 @@ public class Main {
     public static String date(String dateOld, String hron) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate startDate = LocalDate.parse(dateOld, formatter);
-        LocalDate endDate = LocalDate.parse("2023-10-23");
+        LocalDate endDate = LocalDate.parse("2023-11-08");
         Period period = Period.between(startDate, endDate);
         switch (hron){
             case "day":
@@ -106,7 +107,7 @@ public class Main {
     }
 public static String jsonName(String name){
         String fn;
-            name = name.replace("call1_", "");
+            name = name.replace("call2_", "");
             fn = name.replace("txt","");
             System.out.println(fn);
             return fn;
