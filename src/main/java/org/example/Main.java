@@ -22,6 +22,7 @@ public class Main {
                 int n = 0;
                 int n1 = 0;
                 int n2 = 0;
+                int n3 = 0;
                 while ((orig = br.readLine()) != null) {
                     if (n<1 & orig.contains("\"loanRequestExtId\": \"")) {
                         int number = orig.indexOf(": \"");
@@ -40,6 +41,12 @@ public class Main {
                         newoig = orig.replace(orig.substring(number+3), "[customerRequestExtId]\"," );
                         orig = newoig;
                         n2++;
+                    }
+                    if (n3<1 & orig.contains("\"customerRequestId\": \"")) {
+                        int number = orig.indexOf(": \"");
+                        newoig = orig.replace(orig.substring(number+3), "[customerRequestId]\"," );
+                        orig = newoig;
+                        n3++;
                     }
                     if (orig.contains("-")) {
                         int number = orig.indexOf(": \"");
