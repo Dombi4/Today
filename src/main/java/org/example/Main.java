@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Main {
+    public static String USERDATE = "2023-11-21";
     public static void main(String[] args) {
         long time = System.nanoTime();
         for (File file : (cat("src/main/resources/in"))) {
@@ -75,7 +76,7 @@ public class Main {
     public static String date(String dateOld, String hron) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate startDate = LocalDate.parse(dateOld, formatter);
-        LocalDate endDate = LocalDate.parse("2023-11-08");
+        LocalDate endDate = LocalDate.parse(USERDATE);
         Period period = Period.between(startDate, endDate);
         switch (hron){
             case "day":
@@ -94,7 +95,7 @@ public class Main {
                 if (period.getYears()==0)
                     return "";
                 if (period.getYears() <0)
-                    return ("+"+ Integer.toString(period.getDays()*(-1)) + "y");
+                    return ("+"+ Integer.toString(period.getYears()*(-1)) + "y");
                 return ("-"+ Integer.toString(period.getYears())+ "y");
         }
         return "NON";
