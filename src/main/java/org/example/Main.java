@@ -4,7 +4,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 public class Main {
     public static String USERDATE = "2023-11-21";
@@ -81,6 +80,7 @@ public class Main {
     }
 
     public static String date(String dateOld, String hron) {
+        String manyYears = "1000";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate startDate = LocalDate.parse(dateOld, formatter);
         LocalDate endDate = LocalDate.parse(USERDATE);
@@ -90,20 +90,22 @@ public class Main {
                 /*if (period.getDays()==0)
                     return "";*/
                 if (period.getDays() <0)
-                    return ("+"+ Integer.toString(period.getDays()*(-1)) + "d");
-                return ("-"+ Integer.toString(period.getDays()) + "d");
+                    return ("+"+ period.getDays()*(-1) + "d");
+                return ("-"+ period.getDays() + "d");
             case "month":
                 if (period.getMonths()==0)
                     return "";
                 if (period.getMonths() <0)
-                    return ("+"+ Integer.toString(period.getMonths()*(-1)) + "m");
-                return ("-"+ Integer.toString(period.getMonths())+ "m");
+                    return ("+"+ period.getMonths()*(-1) + "m");
+                return ("-"+ period.getMonths()+ "m");
             case "year":
                 if (period.getYears()==0)
                     return "";
+                if (period.getYears()<-1000)
+                    return ("+"+ manyYears + "y");
                 if (period.getYears() <0)
-                    return ("+"+ Integer.toString(period.getYears()*(-1)) + "y");
-                return ("-"+ Integer.toString(period.getYears())+ "y");
+                    return ("+"+ period.getYears()*(-1) + "y");
+                return ("-"+ period.getYears()+ "y");
         }
         return "NON";
     }
