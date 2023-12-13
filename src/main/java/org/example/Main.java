@@ -18,32 +18,34 @@ public class Main {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileJson));
                 String orig;
                 String newoig;
+                String comma;
                 int n = 0;
                 int n1 = 0;
                 int n2 = 0;
                 int n3 = 0;
                 while ((orig = br.readLine()) != null) {
+                    comma = orig.endsWith(",") ? "," : "";
                     if (n<1 & orig.contains("\"loanRequestExtId\": \"")) {
                         int number = orig.indexOf(": \"");
-                            newoig = orig.replace(orig.substring(number+3), "[customerRequestExtId]\"," );
+                            newoig = orig.replace(orig.substring(number+3), "[customerRequestExtId]\"" + comma);
                             orig = newoig;
                             n++;
                     }
                     if (n1<1 & orig.contains("\"loanRequestId\": \"")) {
                         int number = orig.indexOf(": \"");
-                        newoig = orig.replace(orig.substring(number+3), "[loanRequestId]\"," );
+                        newoig = orig.replace(orig.substring(number+3), "[loanRequestId]\"" + comma);
                         orig = newoig;
                         n1++;
                     }
                     if (n2<1 & orig.contains("\"customerRequestExtId\": \"")) {
                         int number = orig.indexOf(": \"");
-                        newoig = orig.replace(orig.substring(number+3), "[customerRequestExtId]\"," );
+                        newoig = orig.replace(orig.substring(number+3), "[customerRequestExtId]\"" + comma);
                         orig = newoig;
                         n2++;
                     }
                     if (n3<1 & orig.contains("\"customerRequestId\": \"")) {
                         int number = orig.indexOf(": \"");
-                        newoig = orig.replace(orig.substring(number+3), "[customerRequestId]\"," );
+                        newoig = orig.replace(orig.substring(number+3), "[customerRequestId]\"" + comma);
                         orig = newoig;
                         n3++;
                     }
