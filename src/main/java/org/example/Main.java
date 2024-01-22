@@ -6,12 +6,12 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
-    public static String USERDATE = "2023-11-21";
+    public static String USERDATE = "2023-10-10";
     public static void main(String[] args) {
         long time = System.nanoTime();
         for (File file : (cat("src/main/resources/in"))) {
             File fileTxt = new File("src/main/resources/in/"+file.getName());
-            File fileJson = new File("src/main/resources/out/"+jsonName(file.getName())+"json");
+            File fileJson = new File("src/main/resources/out/"+jsonName(file.getName())+"");
             cat("src/main/resources/in");
             try {
                 BufferedReader br = new BufferedReader(new FileReader(fileTxt));
@@ -52,15 +52,18 @@ public class Main {
                     if (orig.contains("-")) {
                         int number = orig.indexOf(": \"");
                         char c;
+                        char b;
                         if (number > 0) {
                             int num = number + 7;
                             try {
                                 c = orig.charAt(num);
+                                b = orig.charAt(num+3);
                             } catch (StringIndexOutOfBoundsException e){
                                 c = ' ';
+                                b = ' ';
                             }
 
-                            if (c == '-') {
+                            if (c == '-' & b == '-') {
                                 String substr = orig.substring(num - 4, num + 6);
                                     newoig = orig.replace(substr, "[today"+ date(substr, "year") + date(substr, "month") + date(substr, "day") +"]");
                                 //System.out.println(newoig);
